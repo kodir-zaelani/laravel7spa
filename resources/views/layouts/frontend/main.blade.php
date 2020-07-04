@@ -58,7 +58,7 @@
     <link rel="stylesheet" href="/assets/kz/bootstrap-4.5.0/css/skin/skin-blue.css">
     {{-- Orange --}}
     {{--  <link rel="stylesheet" href="{{ asset('/assets/kz/bootstrap-4.5.0/css/skin/skin-orange.css') }}">  --}}
-    @livewireStyles
+    <livewire:styles>
     </head>
     <body class="box-bg">
         <div class="boxed-layout">
@@ -83,6 +83,6 @@
             <script src="{{ asset('/assets/kz/js/theme-plugins.js') }}"></script>
             <!-- Main JS -->
             <script src="{{ asset('/assets/kz/js/main.js') }}"></script>
-        @livewireScripts
+        <livewire:scripts>
     </body>
     </html>

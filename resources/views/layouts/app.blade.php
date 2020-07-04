@@ -18,7 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @livewireStyles
+    <livewire:styles>
 </head>
 <body>
     <div id="app">
@@ -112,7 +112,7 @@
             @yield('content')
         </main>
     </div>
-  @livewireScripts
+    <livewire:scripts>
   @include('sweetalert::alert')
 </body>
 </html>
