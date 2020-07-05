@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Post;
 
 use Livewire\Component;
-use Livewire\WithPagination;
 use App\User;
 use Carbon\Carbon;
 use App\Models\Tag;
@@ -14,29 +13,28 @@ use Illuminate\Http\Request;
 
 class Show extends Component
 {
-    use WithPagination;
-    public $postId;
-    public $title;
-    public $body;
-    public $imageurl;
+    /**
+     * public variable
+     */
+    public $segment;
+    public $post_title;
+    public $post_body;
+    public $post_category;
+    public $post_tags;
+    public $post_comments;
+    public $post_image;
 
+    public $post;
 
-    public function mount($postId)
+    public function mount(Post $post)
     {
-        $this->postId = $postId;
-    }
+        $post->increment('view_count');
 
-    public function getPostProperty()
-    {
-        return Post::find($this->postId);
+        $this->post = $post;
     }
 
     public function render()
     {
-        // $title = "Detail Post";
-        // $post->increment('view_count');
-        // $postComments = $post->comments()->paginate(3);
-
         return view('livewire.post.show');
     }
 }

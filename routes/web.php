@@ -28,7 +28,8 @@ Route::group(['middleware'=>'guest'], function () {
         Route::livewire('/all', 'post.all')->name('post.all');
         Route::livewire('/create', 'post.create')->name('post.create');
         Route::livewire('/edit/{id}', 'post.edit')->name('post.edit');
-        Route::livewire('/show/{id}', 'post.show')->name('post.show');
+        Route::livewire('/show/{post}', 'post.show')->name('post.show');
+        Route::livewire('/category/{category}', 'post.post-category')->name('post.categgory');
         Route::livewire('/about', 'about');
     });
     
@@ -42,10 +43,10 @@ Route::group(['middleware'=>'guest'], function () {
         'as'   => 'post.comments'
     ]);
     
-    Route::get('/category/{category}', [
-        'uses' => 'PostController@category',
-        'as'   => 'category'
-    ]);
+    // Route::get('/category/{category}', [
+    //     'uses' => 'PostController@category',
+    //     'as'   => 'category'
+    // ]);
     
     Route::get('/author/{author}', [
         'uses' => 'PostController@author',

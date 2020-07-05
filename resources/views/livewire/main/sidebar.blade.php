@@ -7,7 +7,7 @@
             <ul>
                 @foreach ($categories as $category)
                 <li>
-                    <a href="{{ url('/category', $category->slug) }}">{{ $category->title }}</a>
+                    <a href="{{route('category', $category->slug) }}">{{ $category->title }}</a>
                     <span>{{ $category->posts->count() }}</span>
                 </li>
                 @endforeach			
@@ -31,7 +31,7 @@
                     <div class="single-post">
                         @if ($post->imageThumbUrl)
                         <div class="post-img">
-                            <a href="{{ url('/show', $post->slug) }}"><img src="{{ $post->imageThumburl }}" alt="{{ $post->title }}"></a>   
+                            <a href="{{ route('post.show', $post->slug) }}"><img src="{{ $post->imageThumburl }}" alt="{{ $post->title }}"></a>   
                         </div>
                         @else
                         <div class="post-img">
@@ -39,7 +39,7 @@
                         </div>
                         @endif
                         <div class="post-info">
-                            <h4><a href="{{ url('/show', $post->slug) }}">{{ $post->title }}</a></h4>
+                            <h4><a href="{{ route('post.show', $post->slug) }}">{{ $post->title }}</a></h4>
                             <p><i class="fa fa-calendar"></i>{{ $post->date }}</p>
                         </div>
                     </div>

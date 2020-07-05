@@ -19,11 +19,8 @@
                     <div class="single-blog">
                         <div class="blog-head">
                             @if ($post->imageThumbUrl)
-                            <a href="{{ route('post.edit', $post->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                            <a href="{{ route('post.show', $post->id) }}" class="btn btn-sm btn-primary">Show</a>
-                            {{--  <a href="{{ route('post.show', $post->slug) }}"><img src="{{ $post->imageThumbUrl }}" alt="{{ $post->title }}"></a>     --}}
+                            <a href="{{ route('post.show', $post->slug) }}"><img src="{{ $post->imageThumbUrl }}" alt="{{ $post->title }}"></a>   
                             @else
-                            <a href="{{ route('post.edit', $post->id) }}" class="btn btn-sm btn-primary">Show</a>
                             <a href="{{ route('post.show', $post->slug) }}"><img src="/assets/kz/images/1000x665.png" alt="{{ $post->title }}"></a>
                             @endif
                         </div>
