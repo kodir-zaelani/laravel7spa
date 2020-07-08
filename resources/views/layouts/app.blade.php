@@ -24,7 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/') }}" target="_blank">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -42,13 +42,13 @@
                         <!-- Authentication Links -->
                         @auth
                         <li class="nav-item">
-                            <a href="/home" class="nav-link">Home</a>
+                            <a href="{{ route('backend.home') }}" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/contacts" class="nav-link">Contact</a>
+                            <a href="{{ route('backend.contacts') }}" class="nav-link">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/users" class="nav-link">User</a>
+                            <a href="{{ route('backend.users') }}" class="nav-link">User</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
@@ -92,7 +92,7 @@
                     </ul>   
                         @endauth
                         @guest
-                        <ul>
+                        {{--  <ul>
                             <li class="nav-item">
                                 <a class="nav-link" href="/login">{{ __('Login') }}</a>
                             </li>
@@ -101,7 +101,7 @@
                                     <a class="nav-link" href="/register">{{ __('Register') }}</a>
                                 </li>
                             @endif
-                        </ul>
+                        </ul>  --}}
                         @endguest
                     
                 </div>

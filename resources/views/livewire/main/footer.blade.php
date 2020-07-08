@@ -7,7 +7,8 @@
                         <!-- About Widget -->
                         <div class="single-widget about">
                              {{-- <a href="index.html"><img src="/uploads/images/logo/logo.png" alt="logo"></a> --}}
-                            <p>Website ini dibangun merupakan hasil pembelajaran PHP Basic, OOP serta Framework Laravel. Website ini dibangun Framework Laravel 7.x, Laravel Livewire dan MySQL. Adapun Tema halaman dengan menggunakan Trendbiz yang telah dilakukan penyesuaian, sedangkan untuk halaman manajamen saya gunakan Tema AdminLTE v.3.x yang telah disesuaikan dengan keperluan sistem<a href="/about">Read more<i class="icofont icofont-caret-right"></i></a></p>	
+                            <p>Website ini dibangun merupakan hasil pembelajaran PHP Basic, OOP serta Framework Laravel. Website ini dibangun Framework Laravel 7.x, Laravel Livewire dan MySQL. Adapun Tema halaman dengan menggunakan Trendbiz yang telah dilakukan penyesuaian, 
+                                sedangkan untuk halaman manajamen saya gunakan Tema AdminLTE v.3.x yang telah disesuaikan dengan keperluan sistem<a href="{{ route('about.index') }}">Read more<i class="icofont icofont-caret-right"></i></a></p>	
                             <ul class="social">
                                 <li><a href="#"><i class="icofont icofont-social-facebook"></i></a></li>
                                 <li><a href="#"><i class="icofont icofont-social-twitter"></i></a></li>
@@ -25,7 +26,7 @@
                             <ul class="list">
                                  @foreach ($categories as $category)
                                 <li>
-                                    <a href="/category/{{ $category->slug }}"><i class="fa fa-caret-right"></i> {{ $category->title }}</a>
+                                    <a href="{{ route('category.show', $category->slug) }}"><i class="fa fa-caret-right"></i> {{ $category->title }}</a>
                                     {{-- <span>{{ $category->posts->count() }}</span> --}}
                                 </li>
                                 @endforeach	 
@@ -41,13 +42,13 @@
                                  @foreach ($popularPostfooter as $post)
                                 <li>
                                     @if ($post->imageThumbUrl)
-                                        <a href="/show/{{ ($post->slug) }}"><img src="{{ $post->imageThumburl }}" alt="{{ $post->title }}"></a>   
+                                        <a href="{{ route('post.show', $post->slug) }}"><img src="{{ $post->imageThumburl }}" alt="{{ $post->title }}"></a>   
                                     @else
                                     <div class="post-img">
-                                        <a href="/show/{{ ($post->slug) }}"><img src="/assets/kz/images/65x60.png" alt="{{ $post->title }}"></a>
+                                        <a href="{{ route('post.show', $post->slug) }}"><img src="/assets/kz/images/65x60.png" alt="{{ $post->title }}"></a>
                                     </div>
                                     @endif
-                                    <a href="/show/{{ ($post->slug) }}">{{ $post->title }}</a>
+                                    <a href="{{ route('post.show', $post->slug) }}">{{ $post->title }}</a>
                                 </li>
                                 @endforeach 
                             </ul>

@@ -21,18 +21,18 @@
                     <div class="single-blog">
                         <div class="blog-head">
                             @if ($post->imageThumbUrl)
-                            <a href="/show/{{ ($post->slug) }}"><img src="{{ $post->imageThumbUrl }}" alt="{{ $post->title }}"></a>   
+                            <a href="{{ route('post.show', $post->slug) }}"><img src="{{ $post->imageThumbUrl }}" alt="{{ $post->title }}"></a>   
                             @else
-                            <a href="/show/{{ ($post->slug) }}"><img src="/assets/kz/images/1000x665.png" alt="{{ $post->title }}"></a>
+                            <a href="{{ route('post.show', $post->slug) }}"><img src="/assets/kz/images/1000x665.png" alt="{{ $post->title }}"></a>
                             @endif
                         </div>
                         <div class="blog-bottom">
                             <h4>
-                                <a href="/show/{{ ($post->slug) }}">{{ $post->title}}</a>
+                                <a href="{{ route('post.show', $post->slug) }}">{{ $post->title}}</a>
                             </h4>
                             <ul class="blog-meta">
                                 <li><i class="fa fa-user"></i> 
-                                    <a href="/author/{{ ($post->author->slug) }}"><strong> {{ $post->author->name  }}</strong></a>
+                                    <a href="{{ route('author.show',$post->author->slug) }}"><strong> {{ $post->author->name  }}</strong></a>
                                 </li>
                             </ul>
                             <br>

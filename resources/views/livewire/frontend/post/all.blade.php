@@ -47,7 +47,7 @@
                                     </h5>
                                     <ul class="blog-meta" >
                                         <li><i class="fa fa-user"></i> 
-                                            <a href="{{ route('author', $post->author->slug) }}"><strong> {{ $post->author->name  }}</strong></a>
+                                            <a href="{{ route('author.show', $post->author->slug) }}"><strong> {{ $post->author->name  }}</strong></a>
                                         </li>
                                     </ul>
                                     {!!  substr(strip_tags($post->excerpt), 0, 200) !!} [...]
@@ -65,7 +65,8 @@
                         <div class="col-12 ">
                             <!-- Pagination -->
                             <div class="pagination-main" style="padding:30px;">
-                                {{$posts->appends(Request::all('vendor.pagination.bootstrap-4'))->links()}}
+                                {{$posts->appends(Request::all())->links()}}
+                                {{--  {{$posts->appends(Request::all('vendor.pagination.bootstrap-4'))->links()}}  --}}
                             </div>
                             <!--/ End Pagination -->
                         </div>

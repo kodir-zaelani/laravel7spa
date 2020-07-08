@@ -44,13 +44,13 @@
                                             <i class="fa fa-calendar"></i>{{ $post->date }} 
                                         </li>
                                         <li><i class="fa fa-user"></i> By
-                                             <a href="/author/{{ ($post->author->slug) }}"> {{ $post->author->name  }}</a> 
+                                             <a href="{{ route('author.show', $post->author->slug) }}"> {{ $post->author->name  }}</a> 
                                         </li>
                                         <li>
                                             <a href="#"><i class="fa fa-tags"></i>{!! $post->tags_html !!}</a> 
                                         </li>
                                         <li> <i class="fa fa-folder"></i>
-                                             <a href="/category/{{ ($post->category->slug) }}"> {{ $post->category->title }}</a> 
+                                             <a href="{{ route('category.show', $post->category->slug) }}"> {{ $post->category->title }}</a> 
                                         </li>
                                         <li><i class="fa fa-comments"></i>
                                              <a href="#post-comments">{{ $post->commentsNumber('Comment') }}</a> 

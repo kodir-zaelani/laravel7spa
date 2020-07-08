@@ -137,7 +137,7 @@ class Post extends Model
             {
                 $anchors = [];
                 foreach($this->tags as $tag) {
-                    $anchors[] = '<a href="/tag/' . ( $tag->slug) . '">' . $tag->name . '</a>';
+                    $anchors[] = '<a href="' .route('tag.show', $tag->slug) . '">' . $tag->name . '</a>';
                 }
                 return implode(", ", $anchors);
             }
@@ -234,16 +234,19 @@ class Post extends Model
                 if (isset($filter['term']) && $term = strtolower($filter['term']))
                 {
                     $query->where(function($q) use ($term) {
-                        // $q->whereHas('author', function($qr) use ($term) {
-                            //     $qr->where('name', 'LIKE', "%{$term}%");
-                            // });
-                            // $q->orWhereHas('category', function($qr) use ($term) {
-                                //     $qr->where('title', 'LIKE', "%{$term}%");
-                                // });
+                        $q->whereHas('author', function($qr) use ($term) {
+                                $qr->where('name', 'LIKE', "%{$term}%");
+                            });
+                            $q->orWhereHas('category', function($qr) use ($term) {
+                                    $qr->where('title', 'LIKE', "%{$term}%");
+                                });
+                                $q->orWhereHas('tags', function($qr) use ($term) {
+                                    $qr->where('name', 'LIKE', "%{$term}%");
+                                });
                                 $q->orWhereRaw('LOWER(title) LIKE ?', ["%{$term}%"]);
                                 $q->orWhereRaw('LOWER(excerpt) LIKE ?', ["%{$term}%"]);
-                            });
-                        }
-                    }
+                     });
                 }
+            }
+}
                 

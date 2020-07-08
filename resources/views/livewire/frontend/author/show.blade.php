@@ -34,18 +34,18 @@
                             <div class="single-blog">
                                 <div class="blog-head">
                                     @if ($post->imageThumburl)
-                                        <a href="/show/{{ ( $post->slug) }}"><img src="{{ $post->imageThumburl }}" alt="{{ $post->title }}"></a>  
+                                        <a href="{{ route('post.show', $post->slug) }}"><img src="{{ $post->imageThumburl }}" alt="{{ $post->title }}"></a>  
                                     @else
-                                        <a href="/show/{{ ( $post->slug) }}"><img src="/assets/kz/images/1000x665.png" alt="{{ $post->title }}"></a>
+                                        <a href="{{ route('post.show', $post->slug) }}"><img src="/assets/kz/images/1000x665.png" alt="{{ $post->title }}"></a>
                                     @endif
                                 </div>
                                 <div class="blog-bottom">
                                     <h5>
-                                        <a href="/show/{{ ( $post->slug) }}">{{ $post->title}}</a>
+                                        <a href="{{ route('post.show', $post->slug) }}">{{ $post->title}}</a>
                                     </h5>
                                     <ul class="blog-meta" >
                                         <li><i class="fa fa-user"></i> 
-                                            <a href="/author/{{ ($post->author->slug) }}"><strong> {{ $post->author->name  }}</strong></a>
+                                            <a href="{{ route('author.show', $post->author->slug) }}"><strong> {{ $post->author->name  }}</strong></a>
                                         </li>
                                     </ul>
                                     {!!  substr(strip_tags($post->excerpt), 0, 200) !!} [...]

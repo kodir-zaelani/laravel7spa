@@ -1,41 +1,25 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
-// Route::livewire('/logout', 'logout')->name('logout');
-// Global View Composer frontend + Beckend
-// View::composer('*', function($view) {
-//     $global_categories = \App\Models\Category::latest()->take(6)->get();
-//     $view->with('global_categories', $global_categories);
-// });
-
-Route::group(['middleware'=>'auth'], function () {
-    Route::livewire('/home', 'home')->name('home');
-    Route::livewire('/contacts', 'contact-index')->name('contacts');
-    Route::livewire('/users', 'user-index')->name('users');
+Route::group(['layout' => 'layouts.frontend'], function () {
+    Route::livewire('/', 'frontend.home.index')->name('root');
+    Route::livewire('/all', 'frontend.post.all')->name('post.all');
+    Route::livewire('/show/{post}', 'frontend.post.show')->name('post.show');
+    Route::livewire('/category/{slug}', 'frontend.category.show')->name('category.show');
+    Route::livewire('/author/{slug}', 'frontend.author.show')->name('author.show');
+    Route::livewire('/tag/{slug}', 'frontend.tag.show')->name('tag.show');
+    Route::livewire('/about', 'frontend.about.index')->name('about.index');
 });
 
+
 Route::group(['middleware'=>'guest'], function () {
-    Route::livewire('/login', 'login')->name('login');
-    Route::livewire('/register', 'register')->name('register');
+    Route::group(['layout' => 'layouts.app'], function () {
+        Route::livewire('/login', 'frontend.auth.login')->name('login');
+        Route::livewire('/register', 'frontend.auth.register')->name('register');
+    });
     Route::livewire('/upload', 'uploadimage')->name('upload');
     // Group berdasrakan layouts
-    Route::group(['layout' => 'layouts.frontend.main'], function () {
-        Route::livewire('/', 'frontend.home.index')->name('frontend.home.index');
-        Route::livewire('/all', 'frontend.post.all')->name('frontend.post.all');
-        Route::livewire('/show/{post}', 'frontend.post.show')->name('frontend.post.show');
-        Route::livewire('/category/{slug}', 'frontend.category.show')->name('frontend.category.show');
-        Route::livewire('/author/{slug}', 'frontend.author.show')->name('frontend.author.show');
-        Route::livewire('/tag/{slug}', 'frontend.tag.show')->name('frontend.tag.show');
-        Route::livewire('/about', 'frontend.about.index')->name('frontend.about.index');
-    });
     
     Route::post('/post/{post}/comments', [
         'uses' => 'CommentController@store',
@@ -44,3 +28,12 @@ Route::group(['middleware'=>'guest'], function () {
     
 });
 
+Route::prefix('backend')->group(function () {
+    Route::group(['middleware'=>'auth'], function () {
+        Route::group(['layout' => 'layouts.app'], function () {
+            Route::livewire('/home', 'home')->name('backend.home');
+            Route::livewire('/contacts', 'contact-index')->name('backend.contacts');
+            Route::livewire('/users', 'user-index')->name('backend.users');
+        });
+    });
+});

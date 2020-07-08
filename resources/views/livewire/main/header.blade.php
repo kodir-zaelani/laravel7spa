@@ -76,14 +76,17 @@
                                             {{-- <li><a href="{{ url('contact') }}">Contact</a> --}}
                                             </li>
                                             @auth
-                                            <li>
+                                            {{--  <li>
                                                 <a href="#">{{ Auth::user()->name }}<i class="fa fa-angle-down"></i></a>
+                                                <livewire:logout></livewire:logout>
                                                 <ul class="dropdown">
                                                     <li>
-                                                        <a target="_blank" href="/logout">Signout</a>
-                                                    </li>
+                                                        <livewire:logout></livewire:logout>
+
+                                                        {{--  <a target="_blank" href="/logout">Signout</a>  --}}
+                                                   {{--   </li>
                                                 </ul>
-                                            </li>
+                                            </li>  --}}
                                             @endauth	
                                             @guest
                                             <li class="nav-item">
@@ -98,7 +101,7 @@
                                                 <a class="icon"><i class="fa fa-search"></i></a>
                                                 <div class="search-form overlay">
                                                     <!-- Search Form -->
-                                                    <form class="form" action="/all">
+                                                    <form class="form" action="{{ route('post.all') }}">
                                                         {{-- <label for="term">Silahkan ketik kata kunci pencarian pada berita</label> --}}
                                                         <input type="text" id="term" value="{{ request('term') }}" required  name="term" placeholder="Search something for Posts ...">
                                                         <button type="submit"><i class="fa fa-search"></i></button>
@@ -108,9 +111,11 @@
                                             </div>
                                             <!--/ End Search -->
                                             <!-- Nav Icon -->
-                                            <div class="single-bar nav-icon">
+                                            @auth
+                                            {{--  <div class="single-bar nav-icon">
                                                 <a class="bar"><i class="fa fa-bars"></i></a>
-                                            </div>
+                                            </div>  --}}
+                                            @endauth
                                             <!--/ End Nav Icon -->
                                         </div>
                                         <!--/ End Right Bar -->
@@ -125,6 +130,7 @@
         </div>
         <!--/ End Header Inner -->
         <!-- Sidebar Area -->
+        @auth
         <div class="side-area">
             <div class="cross">
                 <a class="btn"><i class="fa fa-remove"></i></a>
@@ -136,8 +142,15 @@
             <!--/ End Logo -->
             <!-- Menu -->
             <ul class="nav navbar-nav">			
-                <li><a href="{{ url('all') }}">Latest Post</a></li>				
-                <li><a href="#">Contact</a></li>		
+                <li class="nav-item">
+                    <a href="/home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/contacts" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/users" class="nav-link">User</a>
+                </li>		
             </ul>	
             <!--/ End Menu -->
             <!-- Side Bottom -->
@@ -153,6 +166,7 @@
             </div>
             <!-- End Side Bottom -->
         </div>
+        @endauth
         <!--/ End Sidebar Area -->	
     </header>
 </div>
