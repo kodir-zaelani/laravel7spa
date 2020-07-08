@@ -13,7 +13,7 @@
                 </div>
                 <!-- Bread List -->
                 <ul class="bread-list">
-                    <li><a href="{{ route('post') }}"><i class="fa fa-home"></i>Home</a></li>
+                    <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
                     <li><a href="#"><i class="fa fa-clone"></i>Blog</a></li>
                     <li class="active"><a href="#"><i class="fa fa-clone"></i>All Post</a></li>
                 </ul>

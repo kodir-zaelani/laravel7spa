@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::livewire('/logout', 'logout')->name('logout');
-
+// Global View Composer frontend + Beckend
+// View::composer('*', function($view) {
+//     $global_categories = \App\Models\Category::latest()->take(6)->get();
+//     $view->with('global_categories', $global_categories);
+// });
 
 Route::group(['middleware'=>'auth'], function () {
     Route::livewire('/home', 'home')->name('home');
@@ -24,38 +28,19 @@ Route::group(['middleware'=>'guest'], function () {
     Route::livewire('/upload', 'uploadimage')->name('upload');
     // Group berdasrakan layouts
     Route::group(['layout' => 'layouts.frontend.main'], function () {
-        Route::livewire('/', 'post.index')->name('post.index');
-        Route::livewire('/all', 'post.all')->name('post.all');
-        Route::livewire('/create', 'post.create')->name('post.create');
-        Route::livewire('/edit/{id}', 'post.edit')->name('post.edit');
-        Route::livewire('/show/{post}', 'post.show')->name('post.show');
-        Route::livewire('/category/{category}', 'post.post-category')->name('post.categgory');
+        Route::livewire('/', 'frontend.home.index')->name('frontend.home.index');
+        Route::livewire('/all', 'frontend.post.all')->name('frontend.post.all');
+        Route::livewire('/show/{post}', 'frontend.post.show')->name('frontend.post.show');
+        Route::livewire('/category/{slug}', 'frontend.category.show')->name('frontend.category.show');
+        Route::livewire('/author/{slug}', 'frontend.author.show')->name('frontend.author.show');
+        Route::livewire('/tag/{slug}', 'frontend.tag.show')->name('frontend.tag.show');
         Route::livewire('/about', 'about');
     });
-    
-    // Route::get('/post/{post}', [
-    //     'uses' => 'PostController@show',
-    //     'as'   => 'post.show'
-    // ]);
     
     Route::post('/post/{post}/comments', [
         'uses' => 'CommentController@store',
         'as'   => 'post.comments'
     ]);
     
-    // Route::get('/category/{category}', [
-    //     'uses' => 'PostController@category',
-    //     'as'   => 'category'
-    // ]);
-    
-    Route::get('/author/{author}', [
-        'uses' => 'PostController@author',
-        'as'   => 'author'
-    ]);
-    
-    Route::get('/tag/{tag}', [
-        'uses' => 'PostController@tag',
-        'as'   => 'tag'
-    ]);
 });
 

@@ -36,27 +36,25 @@
                             <div class="single-blog">
                                 <div class="blog-head">
                                     @if ($post->imageThumburl)
-                                    <a href="{{ url('/show', $post->slug) }}"><img src="{{ $post->imageThumburl }}" alt="{{ $post->title }}"></a>   
+                                        <a href="{{ route('post.show', $post->slug) }}"><img src="{{ $post->imageThumburl }}" alt="{{ $post->title }}"></a>  
                                     @else
-                                    <a href="{{ url('/show', $post->slug) }}"><img src="/assets/kz/images/1000x665.png" alt="{{ $post->title }}"></a>
+                                        <a href="{{ route('post.show', $post->slug) }}"><img src="/assets/kz/images/1000x665.png" alt="{{ $post->title }}"></a>
                                     @endif
                                 </div>
                                 <div class="blog-bottom">
-                                    <h4>
-                                    <a href="{{ url('/show', $post->slug) }}">{{ $post->title}}</a>
-                                    </h4>
+                                    <h5>
+                                        <a href="{{ route('post.show', $post->slug) }}">{{ $post->title}}</a>
+                                    </h5>
                                     <ul class="blog-meta" >
                                         <li><i class="fa fa-user"></i> 
-                                            <a href="{{ url('/author', $post->author->slug) }}"><strong> {{ $post->author->name  }}</strong></a>
+                                            <a href="{{ route('author', $post->author->slug) }}"><strong> {{ $post->author->name  }}</strong></a>
                                         </li>
-                                        {{-- <li><a href="{{ url('/show', $post->slug) }}#post-comments"><i class="fa fa-comments"></i>30 Comments</a></li> --}}
                                     </ul>
                                     {!!  substr(strip_tags($post->excerpt), 0, 200) !!} [...]
-                                    <ul class="blog-meta">
-                                        <li><i class="fa fa-calendar"></i>{{ $post->date }}</li>
-                                        <li><a href="#"><i class="fa fa-tag"></i>{!! $post->tags_html !!}</a></li>
-                                        {{-- <li><a href="{{ url('/show', $post->slug) }}#post-comments"><i class="fa fa-comments"></i>30 Comments</a></li> --}}
-                                    </ul>
+                                <ul class="blog-meta">
+                                    <li><i class="fa fa-calendar"></i>{{ $post->date }}</li>
+                                    <li><a href="#"><i class="fa fa-tag"></i>{!! $post->tags_html !!}</a></li>
+                                </ul>
                                 </div>
                             </div>
                             <!--/ End Single blog -->

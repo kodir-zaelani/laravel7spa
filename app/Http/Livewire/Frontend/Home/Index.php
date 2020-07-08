@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Http\Livewire\Post;
+namespace App\Http\Livewire\Frontend\Home;
 
+use Livewire\Component;
 use App\User;
 use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Http\Requests;
-use Livewire\Component;
 use App\Models\Category;
 use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithPagination;
-
     public function render()
     {
         $date = Carbon::now();
@@ -25,13 +23,6 @@ class Index extends Component
                     ->take(6)
                     // ->paginate($this->limit);
                     ->get();
-        return view('livewire.post.index', compact('posts', 'date'));
-    }
-
-    public function showPost($contactId)
-    {
-        $contact = Post::find($contactId);
-        $this->emit('showPost',$contact);
+        return view('livewire.frontend.home.index', compact('posts'));
     }
 }
-

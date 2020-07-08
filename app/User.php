@@ -42,7 +42,7 @@ class User extends Authenticatable
     //fungsi relasi to Post
     public function posts()
     {
-        return $this->hasMany('App\Post', 'author_id');
+        return $this->hasMany('App\Models\Post', 'author_id');
     }
 
     public function getBioHtmlAttribute($value)

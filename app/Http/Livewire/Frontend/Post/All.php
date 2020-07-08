@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Livewire\Post;
+namespace App\Http\Livewire\Frontend\Post;
 
+use Livewire\Component;
 use App\User;
 use Carbon\Carbon;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Http\Requests;
-use Livewire\Component;
 use App\Models\Category;
 use Livewire\WithPagination;
 
 class All extends Component
 {
     use WithPagination;
-    public $paginate = 6;
+    public $perPage = 6;
     public $term;
 
     protected $updatesQueryString = ['term'];
@@ -30,7 +30,7 @@ class All extends Component
                         ->latestFirst()
                         ->published()
                         ->filter(request()->only(['term', 'year', 'month']))
-                        ->paginate($this->paginate);
-        return view('livewire.post.all', compact('posts'));
+                        ->paginate($this->perPage);
+        return view('livewire.frontend.post.all', compact('posts'));
     }
 }

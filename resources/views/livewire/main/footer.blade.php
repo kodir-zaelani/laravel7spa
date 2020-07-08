@@ -25,8 +25,8 @@
                             <ul class="list">
                                  @foreach ($categories as $category)
                                 <li>
-                                    <a href="{{ route('category', $category->slug) }}"><i class="fa fa-caret-right"></i> {{ $category->title }}</a>
-                                    <span>{{ $category->posts->count() }}</span>
+                                    <a href="/category/{{ $category->slug }}"><i class="fa fa-caret-right"></i> {{ $category->title }}</a>
+                                    {{-- <span>{{ $category->posts->count() }}</span> --}}
                                 </li>
                                 @endforeach	 
                             </ul>
@@ -41,13 +41,13 @@
                                  @foreach ($popularPostfooter as $post)
                                 <li>
                                     @if ($post->imageThumbUrl)
-                                        <a href="{{ url('show', $post->slug) }}"><img src="{{ $post->imageThumburl }}" alt="{{ $post->title }}"></a>   
+                                        <a href="/show/{{ ($post->slug) }}"><img src="{{ $post->imageThumburl }}" alt="{{ $post->title }}"></a>   
                                     @else
                                     <div class="post-img">
-                                        <a href="{{ url('show', $post->slug) }}"><img src="/assets/kz/images/65x60.png" alt="{{ $post->title }}"></a>
+                                        <a href="/show/{{ ($post->slug) }}"><img src="/assets/kz/images/65x60.png" alt="{{ $post->title }}"></a>
                                     </div>
                                     @endif
-                                    <a href="{{ url('show', $post->slug) }}">{{ $post->title }}</a>
+                                    <a href="/show/{{ ($post->slug) }}">{{ $post->title }}</a>
                                 </li>
                                 @endforeach 
                             </ul>

@@ -1,4 +1,6 @@
 <div>
+    @section("title")Home - Zaelani.id @endsection
+
     <livewire:main.slider></livewire:main.slider>
     <livewire:main.feature></livewire:main.feature>
         
@@ -19,27 +21,25 @@
                     <div class="single-blog">
                         <div class="blog-head">
                             @if ($post->imageThumbUrl)
-                            <a href="{{ route('post.show', $post->slug) }}"><img src="{{ $post->imageThumbUrl }}" alt="{{ $post->title }}"></a>   
+                            <a href="/show/{{ ($post->slug) }}"><img src="{{ $post->imageThumbUrl }}" alt="{{ $post->title }}"></a>   
                             @else
-                            <a href="{{ route('post.show', $post->slug) }}"><img src="/assets/kz/images/1000x665.png" alt="{{ $post->title }}"></a>
+                            <a href="/show/{{ ($post->slug) }}"><img src="/assets/kz/images/1000x665.png" alt="{{ $post->title }}"></a>
                             @endif
                         </div>
                         <div class="blog-bottom">
                             <h4>
-                                <a href="{{ url('/show', $post->slug) }}">{{ $post->title}}</a>
+                                <a href="/show/{{ ($post->slug) }}">{{ $post->title}}</a>
                             </h4>
                             <ul class="blog-meta">
                                 <li><i class="fa fa-user"></i> 
-                                    <a href="{{ url('/author', $post->author->slug) }}"><strong> {{ $post->author->name  }}</strong></a>
+                                    <a href="/author/{{ ($post->author->slug) }}"><strong> {{ $post->author->name  }}</strong></a>
                                 </li>
-                                {{-- <li><a href="{{ route('post.show', $post->slug) }}#post-comments"><i class="fa fa-comments"></i>30 Comments</a></li> --}}
                             </ul>
                             <br>
                             {!!  substr(strip_tags($post->excerpt), 0, 200) !!} [...]
                             <ul class="blog-meta">
                                 <li><i class="fa fa-calendar"></i>{{ $post->date }}</li>
                                 <li><a href="#"><i class="fa fa-tag"></i>{!! $post->tags_html !!}</a></li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -60,5 +60,5 @@
             </div>	
         </div>
     </section>
-    </div>
+</div>
     
