@@ -50,8 +50,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        
+        // Perbaikan handler
+        if ($exception instanceof \Illuminate\Auth\Access\AuthorizationException) {
+            return redirect()->back()->with('error-message', 'This action is unauthorized.');
+        }
+        else if ($exception instanceof \Symfony\Component\HttpKernel\Exception\HttpException) {
+            return redirect()->back()->with('error-message', 'Forbidden access.');
+        } else if ($exception instanceof NotFoundHttpException) {
+            return response()->view('errors.404', [], 404);
+        }
         
         return parent::render($request, $exception);
     }
 }
+

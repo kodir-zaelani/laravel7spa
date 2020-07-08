@@ -31,20 +31,27 @@ class Show extends Component
     {
         $author = User::where('slug', $this->segment)->first();
 
-        if($author) {
+        try {
+            //code...
+            if($author) {
 
-            $this->author_name    = $author->name;
-
-            $posts = $author->posts()
-            // Post::where('author_id', $author->id)
-                    ->with('category', 'tags', 'comments')
-                    ->latestFirst()
-                    ->published()
-                    ->paginate($this->perPage);
+                $this->author_name    = $author->name;
+    
+                $posts = $author->posts()
+                // Post::where('author_id', $author->id)
+                        ->with('category', 'tags', 'comments')
+                        ->latestFirst()
+                        ->published()
+                        ->paginate($this->perPage);
+            }
+            return view('livewire.frontend.author.show',[
+                'posts'          => $posts,
+                'author_name'    => $this->author_name
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return abort(404);
         }
-        return view('livewire.frontend.author.show',[
-            'posts'          => $posts,
-            'author_name'    => $this->author_name
-        ]);
+        
     }
 }

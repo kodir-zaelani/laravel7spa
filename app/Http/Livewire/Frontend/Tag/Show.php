@@ -31,20 +31,27 @@ class Show extends Component
     {
         $tag = Tag::where('slug', $this->segment)->first();
 
-        if($tag) {
+        try {
+            //code...
+            if($tag) {
 
-            $this->tag_name    = $tag->name;
-
-            $posts =$tag->posts() 
-                    // Post::where('tag_id', $tag->id)
-                    ->with('category', 'author', 'comments')
-                    ->latestFirst()
-                    ->published()
-                    ->paginate($this->perPage);
+                $this->tag_name    = $tag->name;
+    
+                $posts =$tag->posts() 
+                        // Post::where('tag_id', $tag->id)
+                        ->with('category', 'author', 'comments')
+                        ->latestFirst()
+                        ->published()
+                        ->paginate($this->perPage);
+            }
+            return view('livewire.frontend.tag.show',[
+                'posts'          => $posts,
+                'tag_name'    => $this->tag_name
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return abort(404);
         }
-        return view('livewire.frontend.tag.show',[
-            'posts'          => $posts,
-            'tag_name'    => $this->tag_name
-        ]);
+        
     }
 }

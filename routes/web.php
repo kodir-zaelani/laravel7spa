@@ -34,7 +34,7 @@ Route::group(['middleware'=>'guest'], function () {
         Route::livewire('/category/{slug}', 'frontend.category.show')->name('frontend.category.show');
         Route::livewire('/author/{slug}', 'frontend.author.show')->name('frontend.author.show');
         Route::livewire('/tag/{slug}', 'frontend.tag.show')->name('frontend.tag.show');
-        Route::livewire('/about', 'about');
+        Route::livewire('/about', 'frontend.about.index')->name('frontend.about.index');
     });
     
     Route::post('/post/{post}/comments', [

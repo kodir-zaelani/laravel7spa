@@ -29,22 +29,31 @@ class Show extends Component
 
     public function render()
     {
+
         $category = Category::where('slug', $this->segment)->first();
 
-        if($category) {
+        try {
+            //code...
+            if($category) {
 
-            $this->category_title    = $category->title;
-
-            $posts = $category->posts()
-            // Post::where('category_id', $category->id)
-                    ->with('author', 'tags', 'comments')
-                    ->latestFirst()
-                    ->published()
-                    ->paginate($this->perPage);
+                $this->category_title    = $category->title;
+    
+                $posts = $category->posts()
+                // Post::where('category_id', $category->id)
+                        ->with('author', 'tags', 'comments')
+                        ->latestFirst()
+                        ->published()
+                        ->paginate($this->perPage);
+            }
+            
+            return view('livewire.frontend.category.show',[
+                'posts'          => $posts,
+                'category_title'    => $this->category_title
+            ]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return abort(404);
         }
-        return view('livewire.frontend.category.show',[
-            'posts'          => $posts,
-            'category_title'    => $this->category_title
-        ]);
+        
     }
 }

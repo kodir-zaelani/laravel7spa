@@ -9,7 +9,7 @@
                 <div class="col-12">
                     <!-- Bread Title -->
                     <div class="bread-title">
-                        <h2>Latest Post</h2>
+                        <h2>About</h2>
                     </div>
                     <!-- Bread List -->
                     <ul class="bread-list">
@@ -330,8 +330,6 @@
         </div>
     </section>
     <!--/ End Team -->
-    <!-- Newsletter -->
-    {{-- @include('frontend.kz.layouts.newsletter') --}}
-    <!--/ End Newsletter -->
+    
     </div>
     
